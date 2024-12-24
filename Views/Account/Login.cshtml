@@ -1,0 +1,131 @@
+﻿@using Library.ViewModel
+@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light gray background color */
+        font-family: Arial, sans-serif;
+    }
+
+    .text-purple {
+        color: #800080; /* Purple text color */
+    }
+
+    .custom-bg {
+        background-color: #ffffff; /* White background color */
+    }
+
+    .container-custom {
+        max-width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .h-custom {
+        height: 100vh;
+    }
+
+    .mt-100 {
+        margin-top: 100px;
+    }
+
+    .p-4 {
+        padding: 1.5rem;
+    }
+
+    .rounded {
+        border-radius: 0.25rem;
+    }
+
+    .shadow {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+
+    .form-label,
+    .form-control {
+        width: 100%;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .form-control {
+        padding: 0.75rem;
+        font-size: 1rem;
+        line-height: 1.25;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .text-danger {
+        color: #dc3545; /* Red text color */
+    }
+
+    .btn-outline-custom {
+        color: #fff;
+        border-color: #800080;
+        background-color: #800080;
+    }
+
+        .btn-outline-custom:hover {
+            color: #800080;
+            background-color: #fff;
+            border-color: #800080;
+        }
+
+    .link-danger {
+        color: #dc3545; /* Red text color */
+        text-decoration: none;
+    }
+
+        .link-danger:hover {
+            text-decoration: underline;
+        }
+</style>
+
+<h2 class="text-center text-purple">Login</h2>
+<section class="h-custom custom-bg">
+    <div class="container-custom h-custom">
+        <div class="row justify-content-center align-items-center mt-100">
+            <div asp-validation-summary="All" class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 justify-content-center bg-white p-4 rounded shadow">
+
+                <form asp-action="Login" method="post">
+
+                    <!-- Email input -->
+                    <div class="form-group">
+                        <label asp-for="Email" class="form-label text-purple">Email address</label>
+                        <input asp-for="Email" class="form-control text-purple"
+                               placeholder="fadwatoumi@gmail.com" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-group">
+                        <label asp-for="Password" class="form-label text-purple">Mot de passe</label>
+                        <input asp-for="Password" type="password" id="form3Example4" class="form-control text-purple"
+                               placeholder="**********" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-outline-custom float-right">
+                            Login
+                        </button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0 text-purple">
+                            Don't have an account? <a href="@Url.Action("SignUp", "Account")" class="link-danger">Register</a>
+                        </p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

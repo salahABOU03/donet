@@ -1,0 +1,102 @@
+﻿@using Biblio
+@model Livre
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor _httpContext
+@{
+    ViewData["Title"] = "Details";
+}
+@if (@_httpContext.HttpContext.Session.GetString("UserId") != null){
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Portfolio Item Heading -->
+    <h1 class="my-4">
+        @Model.titre_l
+    </h1>
+
+    <!-- Portfolio Item Row -->
+    <div class="row">
+        @if (false)
+        {
+            <div class="col-md-8">
+                <img src="hi">
+            </div>
+        }
+        else
+        {
+            <div class="col-md-8">
+                    <img class="img-fluid" src="@Model.images" alt="@Model.titre_l" style="width: 400px; height: 500px;">
+            </div>
+        }
+
+
+        <div class="col-md-4">
+            <h3 class="my-3">Details</h3>
+            <ul class="list-unstyled">
+
+              
+                <li><strong>Publication Date:</strong> @Model.annee_l</li>
+                <li>
+                    <strong>Status:</strong>
+
+                </li>
+            </ul>
+
+            <div class="mt-3">
+
+                    <!-- Inside the Details.cshtml view -->
+                    <div class="mt-3">
+                        <form method="post" asp-action="Reserve">
+                            <input type="hidden" name="documentId" value="@Model.id_l" />
+                            <div class="form-group">
+                                <label for="reservationDays">Number of Reservation Days:</label>
+                                <input type="number" class="form-control" id="reservationDays" name="reservationDays" required />
+                            </div>
+                            <button type="submit" class="btn btn-secondary mt-2">Reserve</button>
+                        </form>
+                    </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- /.row -->
+    <div class="mt-3">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+
+</div>
+}
+
+<!-- /.container -->
+<!--
+<div class="container">
+    <h1 class="mt-4">Details</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <h4>Book Information</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-9">
+                    Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-3">
+                    Html.DisplayNameFor(model => model.year)
+                </dt>
+                <dd class="col-sm-9">
+                    Html.DisplayFor(model => model.year)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+-->

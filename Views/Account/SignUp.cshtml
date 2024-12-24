@@ -1,0 +1,173 @@
+﻿@using Library.ViewModel
+@model SignUpModel
+@{
+    ViewData["Title"] = "Sign UP";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light gray background color */
+        font-family: Arial, sans-serif;
+    }
+
+    .text-purple {
+        color: #800080; /* Purple text color */
+    }
+
+    .custom-bg {
+        background-color: #ffffff; /* White background color */
+        height: auto; /* You can set a specific height or use 'auto' for dynamic height */
+        padding: 20px; /* Adjust the padding as needed */
+    }
+
+    .container-custom {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .h-custom {
+        height: 100vh;
+    }
+
+    .mt-100 {
+        margin-top: 100px;
+    }
+
+    .p-4 {
+        padding: 1.5rem;
+    }
+
+    .rounded {
+        border-radius: 0.25rem;
+    }
+
+    .shadow {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+
+    .form-label,
+    .form-control {
+        width: 100%;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .form-control {
+        padding: 0.75rem;
+        font-size: 1rem;
+        line-height: 1.25;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .text-danger {
+        color: #dc3545; /* Red text color */
+    }
+
+    .btn-outline-custom {
+        color: #fff;
+        border-color: #800080;
+        background-color: #800080;
+    }
+
+        .btn-outline-custom:hover {
+            color: #800080;
+            background-color: #fff;
+            border-color: #800080;
+        }
+
+    .btn-outline-secondary {
+        color: #6c757d;
+        border-color: #6c757d;
+        background-color: #fff;
+    }
+
+        .btn-outline-secondary:hover {
+            color: #fff;
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+</style>
+
+<h2 class="text-center text-purple">Sign Up</h2>
+<section class="h-custom custom-bg">
+    <div class="container-custom h-custom">
+        <div class="row justify-content-center align-items-center mt-100">
+            <!--<div asp-validation-summary="All" class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 justify-content-center bg-white p-4 rounded shadow">-->
+
+                <div asp-validation-summary="All" >
+                <form asp-action="SignUp" method="post">
+
+                    <!-- First line: UserName, FirstName, LastName inputs -->
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label asp-for="UserName" class="form-label text-purple">UserName<span style="color: red;">*</span></label>
+                            <input asp-for="UserName" class="form-control text-purple" placeholder="Username" />
+                            <span asp-validation-for="UserName" style="color: red;"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="FirstName" class="form-label text-purple">Prénom<span style="color: red;">*</span></label>
+                            <input asp-for="FirstName" class="form-control text-purple" placeholder="Prénom" />
+                            <span asp-validation-for="FirstName" style="color: red;"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="LastName" class="form-label text-purple">Nom<span style="color: red;">*</span></label>
+                            <input asp-for="LastName" class="form-control text-purple" placeholder="Nom" />
+                            <span asp-validation-for="LastName" style="color: red;"></span>
+                        </div>
+                    </div>
+
+                    <!-- Second line: DateOfBirth, ville, PhoneNumber inputs -->
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label asp-for="DateOfBirth" class="form-label text-purple">Date de naissance<span style="color: red;">*</span></label>
+                            <input asp-for="DateOfBirth" type="date" class="form-control text-purple" />
+                            <span asp-validation-for="DateOfBirth" style="color: red;"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="ville" class="form-label text-purple">Adresse</label>
+                            <input asp-for="ville" class="form-control text-purple" placeholder="Adresse" />
+                            <span asp-validation-for="ville" style="color: red;"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="PhoneNumber" class="form-label text-purple">Numéro de Telephone</label>
+                            <input asp-for="PhoneNumber" class="form-control text-purple" placeholder="06******" maxlength="10" />
+                            <span asp-validation-for="PhoneNumber" style="color: red;"></span>
+                        </div>
+                    </div>
+
+                    <!-- Third line: Email, Password, ConfirmPassword inputs -->
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label asp-for="Email" class="form-label text-purple">Email<span style="color: red;">*</span></label>
+                            <input asp-for="Email" class="form-control text-purple" placeholder="fadwatoumi@gmail.com" />
+                            <span asp-validation-for="Email" style="color: red;"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="Password" class="form-label text-purple">Mot de passe<span style="color: red;">*</span></label>
+                            <input asp-for="Password" type="password" class="form-control text-purple" placeholder="***********" />
+                            <span asp-validation-for="Password" style="color: red;"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="ConfirmPassword" class="form-label text-purple">Confirmer Mot de passe<span style="color: red;">*</span></label>
+                            <input asp-for="ConfirmPassword" type="password" class="form-control text-purple" placeholder="***********" />
+                            <span asp-validation-for="ConfirmPassword" style="color: red;"></span>
+                        </div>
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <input type="submit" class="btn btn-outline-custom float-right" value="Sign Up" style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                        <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="index">Cancel</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

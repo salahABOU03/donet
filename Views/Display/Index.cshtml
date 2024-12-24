@@ -1,0 +1,57 @@
+﻿<!-- Views/Books/Index.cshtml -->
+@using Biblio
+@model List<Livre>
+@{
+    ViewData["Title"] = "EBOOK";
+}
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor _httpContext
+
+@if (@_httpContext.HttpContext.Session.GetString("UserId") != null)
+{
+    <h2 style="color: #800080;">@ViewData["Title"]</h2>
+
+    <!--<form method="get" action="@Url.Action("Index", "Display")" class="mb-3">
+        <div class="input-group">
+            <label for="filter" class="input-group-text" style="color: #ff69b4;">Filter:</label>
+            <input type="text" id="filter" name="filter" class="form-control" />
+
+          
+            <select class="form-select form-select-sm" id="categoryFilter" name="categoryFilter">
+                <option value="" style="color: #ff69b4;">All Categories</option>
+                <option value="Science" style="color: #ff69b4;">Science</option>
+                <option value="Self-Improvement" style="color: #ff69b4;">Self-Improvement</option>
+                <option value="For kids" style="color: #ff69b4;">For kids</option>
+                <option value="Literature & Fiction" style="color: #ff69b4;">Literature & Fiction</option>
+                <option value="Fantasy" style="color: #ff69b4;">Fantasy</option>
+           
+            </select>
+            <button type="submit" class="btn btn-pink" style="background-color: #ff69b4; border-color: #ff69b4;">Apply Filter</button>
+        </div>
+    </form>-->
+
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+        @foreach (var book in Model)
+        {
+            <div class="col">
+                <div class="card h-100" style="width: 200px; border: 2px solid #800080; border-radius: 10px;">
+                    <a asp-controller="Display" asp-action="Details" asp-route-id="@book.id_l">
+                        <img src="@book.images" class="card-img-top" alt="@book.titre_l" style="border-top-left-radius: 8px; border-top-right-radius: 8px;" />
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #800080;">@book.titre_l</h5>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="text-center" style="margin-top: 50px;">
+
+        <a href="@Url.Action("Login", "Account")" class="btn btn-pink btn-lg mr-3" style="background-color:#800080;color:white; border-color: #800080;">Login</a>
+        <a href="@Url.Action("SignUp", "Account")" class="btn btn-purple btn-lg" style="background-color: #800080;color:white; border-color: #800080;">Sign Up</a>
+    </div>
+}
+;
